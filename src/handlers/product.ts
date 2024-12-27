@@ -24,5 +24,7 @@ export const createProduct = async (req: Request, res: Response) => {
         console.log(error)
     }
 
+    //crear Producto
+
 
 }
