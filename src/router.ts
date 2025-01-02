@@ -145,6 +145,54 @@ router.post('/',
     createProduct
 )
 
+/**
+ * 
+ * @swagger
+ * /api/products/{id}:
+ *      put:
+ *          sumary: Updates a product with user input
+ *          tags:
+ *              - Products
+ *          description: Return the updated product
+ *          parameters:
+ *            - in: path
+ *              name: id
+ *              description: The ID of the product to retrieve
+ *              required: true
+ *              schema:
+ *                  type: integer
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          properties:
+ *                              name:
+ *                                  type: string
+ *                                  example: "Monitor curvo de 49 pulgadas"
+ *                              price:
+ *                                  type: number
+ *                                  example: 300
+ *                              availability:
+ *                                  type: boolean
+ *                                  example: true
+ *          responses:
+ *              200:
+ *                  description: Successful response
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Product'
+ *              400:
+ *                  description: Bad Request - Invalid input data
+ *              404:
+ *                  description: Product Not Found
+ * 
+ * 
+ * 
+ */
+
 router.put('/:id',
     param('id').isInt().withMessage('ID no valido'), 
     body('name')
