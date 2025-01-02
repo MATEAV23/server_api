@@ -5,9 +5,89 @@ import { handleInputErrors } from './middleware'
 
 const router = Router()
 
-//Routing
+/**
+ * 
+ * @swagger
+ * components: 
+ *      schemas:
+ *          Product:
+ *              type: object
+ *              properties:
+ *                  id:
+ *                      type: integer
+ *                      description: The Product ID
+ *                      example: 1
+ *                  name:
+ *                      type: string
+ *                      description: The Product name
+ *                      example: Monitor Curvo de 49 pulgadas
+ *                  price:
+ *                      type: number
+ *                      description: The Product price
+ *                      example: 600
+ *                  availability:
+ *                      type: boolean
+ *                      description: The Product Availability
+ *                      example: true
+ */
+
+
+/**
+ * 
+ * @swagger
+ * /api/products:
+ *      get:
+ *          sumary: Get a list of products
+ *          tags:
+ *              - Products
+ *          description: Return a list of products
+ *          responses:
+ *              200:
+ *                  description: Successful response
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: array
+ *                              items:
+ *                                  $ref: '#/components/schemas/Product'
+ * 
+ * 
+ * 
+ */
 
 router.get('/', getProducts)
+
+/**
+ * 
+ * @swagger
+ * /api/products/{id}:
+ *      get:
+ *          sumary: Get a product by ID
+ *          tags:
+ *              - Products
+ *          description: Return a product based on its unique ID
+ *          parameters:
+ *            - in: path
+ *              name: id
+ *              description: The ID of the product to retrieve
+ *              required: true
+ *              schema:
+ *                  type: integer
+ *          responses:
+ *              200:
+ *                  description: Successful response
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Product'
+ *              404:
+ *                  description: Product Not Found
+ *              400:
+ *                  description: Bad Request - Invalid ID
+ * 
+ * 
+ * 
+ */
 router.get('/:id', 
     
     param('id').isInt().withMessage('ID no valido'),
