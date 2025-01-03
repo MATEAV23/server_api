@@ -210,10 +210,76 @@ router.put('/:id',
 
     updateProduct)
 
+
+/**
+ * 
+ * @swagger
+ * /api/products/{id}:
+ *      patch:
+ *          sumary: Updates product availability
+ *          tags:
+ *              - Products
+ *          description: Returns the updated availability
+ *          parameters:
+ *            - in: path
+ *              name: id
+ *              description: The ID of the product to retrieve
+ *              required: true
+ *              schema:
+ *                  type: integer
+ *          responses:
+ *              200:
+ *                  description: Successful response
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/Product'
+ *              400:
+ *                  description: Bad Request - Invalid ID
+ *              404:
+ *                  description: Product Not Found
+ * 
+ * 
+ * 
+ */
+
 router.patch('/:id', 
     param('id').isInt().withMessage('ID no valido'),
     handleInputErrors,
     updateAvailability)
+
+/**
+ * 
+ * @swagger
+ * /api/products/{id}:
+ *      delete:
+ *          sumary: Delete the product with the id in request
+ *          tags:
+ *              - Products
+ *          description: Returns a confirmation message
+ *          parameters:
+ *            - in: path
+ *              name: id
+ *              description: The ID of the product to delete
+ *              required: true
+ *              schema:
+ *                  type: integer
+ *          responses:
+ *              200:
+ *                  description: Successful response
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: string
+ *                              value: 'Producto Eliminado'
+ *              400:
+ *                  description: Bad Request - Invalid ID
+ *              404:
+ *                  description: Product Not Found
+ * 
+ * 
+ * 
+ */
 
 router.delete('/:id', 
     param('id').isInt().withMessage('ID no valido'),
